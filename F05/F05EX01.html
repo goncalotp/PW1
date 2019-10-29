@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>F05</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app" @click="bubbling">
+        <button v-on:click="showMessage('esmad')">MOSTRA MENSAGEM</button>
+        <button v-on:click.stop="showMessage('esmad')">MOSTRA MENSAGEM SEM O PAI (div)</button>
+        <button v-on:click.once="showMessage('esmad')">MOSTRA MENSAGEM MOSTRA O PAI UMA VEZ </button>
+        <button v-on:keyup.tab="showMessage('esmad')">MOSTRA MENSAGEM COM O TAB</button>
+
+
+        <!-- <button v-on:click="showMessage2">MOSTRA MENSAGEM DO EVENTO</button> -->
+
+
+    </div>
+</body>
+<script src="./F05EX01.js"></script>
+</html>

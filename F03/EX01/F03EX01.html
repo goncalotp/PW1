@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>F03EX01</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="intro">
+        <p>Pessoas:{{person}}</p>
+        <p>{{person.age}}</p>
+        <p>Invocação do método:{{dataPerson()}}</p>
+        <p>Invocação do método 2:{{dataPerson()}}</p>
+        <p>Invocação do computed:{{dataPersonComputed}}</p>
+        <p>Invocação do computed 2:{{dataPersonComputed}}</p>
+        <p>Nome completo (computed):{{fullNameComputed}}</p>
+        <p>Dinheiro: {{person.balance | formatBalance()}}</p>
+        <!--<p>{{money | formatCost('€')}}</p>-->
+    </div>
+</body>
+<script src="./F03EX01.js"></script>
+</html>

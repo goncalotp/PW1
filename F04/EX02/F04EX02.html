@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>F04EX02</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="intro">
+      <p>{{ number }} IPP SCHOOLS</p>
+      <p>{{ schools }}</p>
+      <br>
+      <li v-for="school in filterSchool">
+        {{schools}}
+    </li>
+      <button @click=pushSchools>ESMAE</button>
+      <button @click="filterSchool('E')">FILTER SCHOOL</button>
+    </div>
+  </body>
+  <script src="./F04EX02.js"></script>
+</html>
