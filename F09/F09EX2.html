@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>F09</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <h1>GAME SOCCER CARD</h1>
+        <hr>
+        <game-soccer-card 
+                v-for="g in games" 
+                v-bind:game="g">
+        </game-soccer-card>
+    </div>
+    <script src="F09EX02.js"></script>
+</body>
+</html>
