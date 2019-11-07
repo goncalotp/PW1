@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>F07</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1> NOVA VIAGEM </h1>
+        <hr>
+        <label for="slttContinent">CONTINENTE</label>
+        <select id="sltContinente" v-model="continent">
+            <option value="all">TODOS</option>
+            <option value="europa">Europa</option>
+            <option value="africa">Africa</option>
+            <option value="america">America</option>
+            <option value="asia">Asia</option>
+            <option value="oceania">Oceania</option>
+        </select>
+        <br> 
+        <br>
+        <label for="txtCountry">PAIS:</label>
+        <input id="txtCountry" v-model="country" type="text">
+        <br>
+        <br>
+        <label for="txtCities">Cidades:</label>
+        <input id="txtCities" v-model="cities" type="text" placeholder="separar com virgulas">
+        <br>
+        <br>
+        <label for="txtDesc">Descrição:</label>
+        <input id="txtDesc" v-model="desc" type="text">
+        <br>
+        <br>
+        <label for="txtStartDate">Data do inicio:</label>
+        <input id="txtStartDate" v-model="startDate" type="date">
+        <br>
+        <br>
+        <label for="txtEndDate">Data do fim:</label>
+        <input id="txtEndDate" v-model="endDate" type="date">
+        <br>
+        <br>
+        <input id="rbHolidays" v-model="type" type="radio" value="ferias">
+        <label for="rbHolydays">Férias</label>
+        <input id="rbBusiness" v-model="type" type="radio" value="trabalho">
+        <label for="rbBusiness">Trabalho</label>
+        <br>
+        <br>
+        <label for="txtLinkPhoto">Foto: </label>
+        <input id="txtLinkPhoto" v-model="link" type="text">
+        <br>
+        <br>
+        <button v-on:click="addTravel">SUBMETER VIAGEM</button>
+        <br>
+        <br>
+        <span v-if="this.travels.length ===0">SEM VIAGENS</span>
+        <div v-else>
+            <h3>PROCURA VIAGENS</H3>
+            <hr>
+            <label for="txtFilterContinent">Continente:</label>
+            <input id="txtFilterContinent" type="text" v-model.lazy="filterContinent">
+            <label for="txtFilterStartDate">Data do inicio:</label>
+            <input id="txtFilterStartDate" type="date" v-model.lazy="filterStartDate">
+            <label for="txtFilterEndDate">Data do Fim: </label>
+            <input id="txtFilterEndDate" type="date" v-model.lazy="filterEndDate">
+            <label for="txtFilterType">Tipo:</label>
+            <input id="txtFilterType" type="text" v-model.lazy="filterType">
+            <hr>
+            <span>List of Travels</span>
+            <button @click="orderByCountry">Ordenar por paises</button>
+            <button @click="orderByDate">Ordenar por data de inicio</button>
+            <hr>
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>CONTINENTE</th>
+                    <th>PAIS</th>
+                    <th>TIPO</th>
+                    <th>FOTO</th>
+                    <th>AÇÕES</th>
+                </tr>
+                <tr v-for="travel in filteredTravels">
+                    <td> {{travel.id}}</td>
+                    <td> {{travel.continent}}</td>
+                    <td> {{travel.country}}</td>
+                    <td> {{travel.type}}</td>
+                    <td><img :src="' {{travel.link}}' " ></td>
+                   
+                    <td>
+                        <button v-on:click="editTravel(travel.id)">EDITAR</button>
+                        <button v-on:click="removeTravel(travel.id)">REMOVER</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+
+
+    </div>
+    
+</body>
+<script src="./F07EX1.js"></script>
+</html>
