@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>F06</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="intro">
+      <label for="txtTask">Tarefa:</label>
+      <input id="txtTask" v-model="name" />
+      <br />
+      <br />
+      <input v-model="type" id="rbPersonal" type="radio" value="personal" />
+      <label for="rbPersonal">Pessoal</label>
+      <input
+        v-model="type"
+        id="rbProfessional"
+        type="radio"
+        value="professional"
+      />
+      <label for="rbProfissional">Profissional</label>
+      <br />
+      <br />
+      <button v-on:click="addTask" v-bind:disable="tasks.length==0">
+        Submeter
+      </button>
+  
+    <br />
+
+
+
+    <span v-if="tasks.length==0">NÃO HÁ TAREFAS</span>
+    <div v-else>
+      <select for="sltFilter" v-model="filter">
+        <option value="all">TODOS</option>
+        <option value="personal">PESSOAL</option>
+        <option value="professional">PROFESSIONAL</option>
+      </select>
+      <table>
+        <tr>
+          <th>#</th>
+          <th>TAREFA</th>
+          <th>TIPO</th>
+          <th>OPCOES</th>
+        </tr>
+        <tr v-for="(task, index) in filteredTasks">
+          <td>{{ task.id }}</td>
+          <td>{{ task.name }}</td>
+          <td>{{ task.type }}</td>
+          <td>
+            <button v-on:click="removeTask(task.id)">Remover</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+</div>
+  </body>
+  <script src="/F06EX01.js"></script>
+</html>
