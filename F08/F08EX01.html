@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>F08</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app" class="container">
+      <h1>Castelos de Portugal</h1>
+      <form @submit.prevent="addCastle">
+        <div class="row">
+          <div class="col">
+            <input
+              v-model="form.name"
+              type="text"
+              class="form-control"
+              placeholder="name"
+              required
+            />
+          </div>
+          <div class="col">
+            <input
+              v-model="form.link"
+              type="url"
+              class="form-control"
+              placeholder="photo link"
+              required
+            />
+          </div>
+        </div>
+        <br />
+        <button v-on:click="addCastle" type="submit">Adicionar castelo</button>
+      </form>
+      <br />
+      <dialog id="editCastleDialog">
+        <form @submit.prevent="updateCastle" method="dialog">
+          <div class="row">
+            <div class="col">
+              <input
+                v-model="form.editName"
+                type="text"
+                class="form-control"
+                placeholder="nome"
+              />
+            </div>
+            <div class="col">
+              <input
+                v-model="form.editLink"
+                type="url"
+                class="form-control"
+                placeholder="link"
+              />
+            </div>
+            <input v-model="form.editId" type="hidden" />
+          </div>
+          <br />
+          <button type="submit">Gravar</button>
+          <button>Fechar</button>
+        </form>
+      </dialog>
+      <br />
+      Filter
+      <input v-model="form.filterName" type="text" class="form-control" />
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th >Name</th>
+            <th>Opcoes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="castle in filteredCastles">
+            <td scope="row">{{ castle.id }}</td>
+            <td>{{ castle.name }}</td>
+            <td>
+              <button @click="editCastle(castle.id)">Editar</button>
+              <button @click="removeCastle(castle.id)">Remover</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+
+  <script src="/F08EX01.js"></script>
+</html>
