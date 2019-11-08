@@ -3,12 +3,12 @@ Vue.component("game-soccer-card", {
     template: `
  
             <div class="card" style="width: 18rem;">
-                    <img  src="game.stadiumLink" class="card-img-top" >
+                    <img  :src="game.stadiumLink" class="card-img-top" >
                     <div class="card-body" >
-                        <h1 class="card-title"> {{game.stadiumName}} </h1>
-                        <h3 class="card-text"> 
+                        <h1  class="card-title"> {{game.stadiumName}} </h1>
+                        <h6 class="card-text"> 
                         {{getResult(game)}} 
-                        </h3>
+                        </h6>
                   <p class="card-text" v-for="goal in game.goals">
                         {{goal.minute}}'{{goal.name}}
                  </p>
