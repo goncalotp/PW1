@@ -91,6 +91,7 @@
                     <th>Cidades</th>
                     <th>TIPO</th>
                     <th>FOTO</th>
+                  
                     <th>AÇÕES</th>
                 </tr>
                 <tr style=" border: 1px solid black" v-for="travel in filteredTravels">
@@ -99,7 +100,7 @@
                     <td> {{travel.country}}</td>
                     <td> {{travel.cities}}</td>
                     <td> {{travel.type}}</td>
-                    <td><img :src="' {{travel.link}}' " ></td>
+                    <td><img :src="travel.link" ></td>
                    
                     <td>
                         <button v-on:click="editTravel(travel.id)">EDITAR</button>
