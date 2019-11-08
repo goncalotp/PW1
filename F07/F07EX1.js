@@ -55,17 +55,19 @@ const vm = new Vue({
     )
     },
     removeTravel(id) {
+        if(confirm("Tem a certeza que quer remover a viagem?")) {
       this.travels = this.travels.filter( 
         (travel) => travel.id !== id
-      );
       
+      );
+        }
     },
 
     editTravel(id) {
         const index = this.travels.findIndex(
             (travel) => travel.id === id
         )
-        this.travels[index].country = prompt("mudar nome pais?")
+        this.travels[index].country = prompt( "muda o nome do pais")
     },
 
     compareCountry(a, b) {
