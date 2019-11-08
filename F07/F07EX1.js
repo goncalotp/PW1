@@ -8,7 +8,7 @@ const vm = new Vue({
     desc: "",
     startDate: "",
     endDate: "",
-    type: "holydays",
+    type: "all",
     link: "",
     travels: [],
     startDate: "",
@@ -16,7 +16,8 @@ const vm = new Vue({
     filterContinent: "",
     filterStartDate: "",
     filterEndDate: "",
-    filterType: "",
+    filterType: ""
+    
     
   },
   created() {
@@ -64,7 +65,7 @@ const vm = new Vue({
         const index = this.travels.findIndex(
             (travel) => travel.id === id
         )
-        this.travels[index].country = prompt("new country?")
+        this.travels[index].country = prompt("mudar nome pais?")
     },
 
     compareCountry(a, b) {
@@ -100,11 +101,15 @@ computed: {
                 let filterContinentResult = true
                 let filterDatesResult = true
                 let filterTypeResult = true
+                
 
+                if(this.filterType !== ""){
+                    filterTypeResult =  (travel.type === this.filterType) || (this.filterType == "all")
+                }
 
                 // Filter continent
                 if(this.filterContinent!=="") {
-                    filterContinentResult = travel.continent === this.filterContinent      
+                    filterContinentResult =  (travel.continent === this.filterContinent) || (this.filterContinent == "all")     
                 } 
 
                 // Filter dates                    
@@ -113,16 +118,19 @@ computed: {
                         travel.startDate >= new Date(this.filterStartDate) && 
                         travel.startDate <= new Date(this.filterEndDate)
                 }
-
-                if(this.filterType !== "") {
-                    filterTypeResult = travel.type === this.filterType 
-                }
-
+                
+                
+                 
                 // return the conjunction of the two filters
                 return filterContinentResult && filterDatesResult && filterTypeResult
 
+                
+
             }
+
         )
+
+        
     }
 }
 })

@@ -11,18 +11,18 @@
     <div id="app">
         <h1> NOVA VIAGEM </h1>
         <hr>
-        <label for="slttContinent">CONTINENTE</label>
+        <label for="slttContinent">Continente:</label>
         <select id="sltContinente" v-model="continent">
             <option value="all">TODOS</option>
-            <option value="europa">Europa</option>
-            <option value="africa">Africa</option>
-            <option value="america">America</option>
-            <option value="asia">Asia</option>
-            <option value="oceania">Oceania</option>
+            <option value="Europa">Europa</option>
+            <option value="Africa">Africa</option>
+            <option value="America">America</option>
+            <option value="Asia">Asia</option>
+            <option value="Oceania">Oceania</option>
         </select>
         <br> 
         <br>
-        <label for="txtCountry">PAIS:</label>
+        <label for="txtCountry">Pais:</label>
         <input id="txtCountry" v-model="country" type="text">
         <br>
         <br>
@@ -42,9 +42,9 @@
         <input id="txtEndDate" v-model="endDate" type="date">
         <br>
         <br>
-        <input id="rbHolidays" v-model="type" type="radio" value="ferias">
+        <input id="rbHolidays" v-model="type" type="radio" value="Ferias">
         <label for="rbHolydays">Férias</label>
-        <input id="rbBusiness" v-model="type" type="radio" value="trabalho">
+        <input id="rbBusiness" v-model="type" type="radio" value="Trabalho">
         <label for="rbBusiness">Trabalho</label>
         <br>
         <br>
@@ -60,31 +60,44 @@
             <h3>PROCURA VIAGENS</H3>
             <hr>
             <label for="txtFilterContinent">Continente:</label>
-            <input id="txtFilterContinent" type="text" v-model.lazy="filterContinent">
+            <select id="txtFilterContinent" v-model="filterContinent">
+                <option value="all">TODOS</option>
+                <option value="Europa">Europa</option>
+                <option value="Africa">Africa</option>
+                <option value="America">America</option>
+                <option value="Asia">Asia</option>
+                <option value="Oceania">Oceania</option>
+            </select>
             <label for="txtFilterStartDate">Data do inicio:</label>
             <input id="txtFilterStartDate" type="date" v-model.lazy="filterStartDate">
             <label for="txtFilterEndDate">Data do Fim: </label>
             <input id="txtFilterEndDate" type="date" v-model.lazy="filterEndDate">
             <label for="txtFilterType">Tipo:</label>
-            <input id="txtFilterType" type="text" v-model.lazy="filterType">
+            <select id="txtFilterType" v-model="filterType">
+                <option value="all">Todos</option>
+                <option value="Ferias">Ferias</option>
+                <option value="Trabalho">Trabalho</option>
+            </select>
             <hr>
             <span>List of Travels</span>
             <button @click="orderByCountry">Ordenar por paises</button>
             <button @click="orderByDate">Ordenar por data de inicio</button>
             <hr>
-            <table>
-                <tr>
+            <table style="width:100% ; text-align: center; border: 1px solid black">
+                <tr >
                     <th>#</th>
                     <th>CONTINENTE</th>
                     <th>PAIS</th>
+                    <th>Cidades</th>
                     <th>TIPO</th>
                     <th>FOTO</th>
                     <th>AÇÕES</th>
                 </tr>
-                <tr v-for="travel in filteredTravels">
-                    <td> {{travel.id}}</td>
+                <tr style=" border: 1px solid black" v-for="travel in filteredTravels">
+                    <td > {{travel.id}}</td>
                     <td> {{travel.continent}}</td>
                     <td> {{travel.country}}</td>
+                    <td> {{travel.cities}}</td>
                     <td> {{travel.type}}</td>
                     <td><img :src="' {{travel.link}}' " ></td>
                    
