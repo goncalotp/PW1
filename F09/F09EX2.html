@@ -1,23 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>F09</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
 </head>
+
 <body>
 
     <div id="app">
         <h1>GAME SOCCER CARD</h1>
         <hr>
-        <game-soccer-card 
-                v-for="g in games" 
-                v-bind:game="g">
-        </game-soccer-card>
+        <label id="txtRegion">Região</label>
+        <select v-model="filterRegion">
+            <option value="todos">Todos</option>
+            <option value="norte">Norte</option>
+            <option value="sul">Sul</option>
+            <option value="centro">Centro</option>
+        </select>
+        <label id="txtStadium">Estádio</label>
+        <input for="txtStadium" v-model.lazy="filterStadium" >
+        <label id="txtTeam">Equipa</label>
+        <input for="txtTeam" v-model.lazy="filterTeam" >
+        <div class="row">
+       
+        
+        </div>
+        
+            <br>
+            <br>
+            <div class="row" >
+                <game-soccer-card v-for="g in showGames" v-bind:game="g">
+                </game-soccer-card>
+            </div>
+
     </div>
     <script src="F09EX02.js"></script>
 </body>
+
 </html>
