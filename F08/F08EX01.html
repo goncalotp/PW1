@@ -6,12 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>F08</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
   </head>
   <body>
     <div id="app" class="container">
       <h1>Castelos de Portugal</h1>
       <form @submit.prevent="addCastle">
-        <div class="row">
+        <div class="row" >
           <div class="col">
             <input
               v-model="form.name"
@@ -30,9 +32,18 @@
               required
             />
           </div>
+          <div class="col">
+            <input
+              v-model="form.year"
+              type="number"
+              class="form-control"
+              placeholder="year"
+              required
+            />
+          </div>
         </div>
         <br />
-        <button v-on:click="addCastle" type="submit">Adicionar castelo</button>
+        <button type="submit">Adicionar castelo</button>
       </form>
       <br />
       <dialog id="editCastleDialog">
@@ -54,6 +65,14 @@
                 placeholder="link"
               />
             </div>
+            <div class="col">
+              <input
+                v-model="form.editYear"
+                type=""
+                class="form-control"
+                placeholder="ano"
+              />
+            </div>
             <input v-model="form.editId" type="hidden" />
           </div>
           <br />
@@ -62,20 +81,43 @@
         </form>
       </dialog>
       <br />
-      Filter
+      <span v-if="this.castles.length === 0"> Não existe castelos</span>
+      <div v-else>
+      Procura por nome do castelo
       <input v-model="form.filterName" type="text" class="form-control" />
+      <button @click="orderByCastle">Filtrar por nomes</button>
+        <br>
+        <br>
+      <!-- Array manipulation -->
+      <span>Array Manipulation</span>
+      <div class="alert alert-primary" role="alert">
+        <button class="btn btn-praimary btn-sm" @click="manipulateArray('ei')">Retirar castelo do nome</button>
+        <button class="btn btn-praimary btn-sm" @click="manipulateArray('eii')">Calcular data</button>
+        <button class="btn btn-praimary btn-sm" @click="manipulateArray('eiii')">Procurar castelo do Marvão </button>
+        <button class="btn btn-praimary btn-sm" @click="manipulateArray('eiv')">Todos os castelos começados por A </button>
+        <button class="btn btn-praimary btn-sm" @click="manipulateArray('evii')">Retorna Castelo de Santa Maria da Feira </button>
+        <button class="btn btn-praimary btn-sm" @click="manipulateArray('eviii')">Castelo de Arraiolos</button>
+        <button class="btn btn-praimary btn-sm" @click="manipulateArray('fi')">Retorna todos os castelos com "-" </button>
+        <button class="btn btn-praimary btn-sm" @click="manipulateArray('fii')">Castelos que foram construidos depois de 1950 </button>
+        <button class="btn btn-praimary btn-sm" @click="manipulateArray('fiii')">Limpar todos os links de todos os castelos criados antes de 1900 </button>
+        <button class="btn btn-praimary btn-sm" @click="manipulateArray('fiv')">Somar 5 anos a castelos que comecem com vogal </button>
+      </div>
       <table>
         <thead>
           <tr>
             <th>ID</th>
             <th >Name</th>
-            <th>Opcoes</th>
+            <th> Ano </th>
+            <th >Foto</th>
+            <th>Opcões</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="castle in filteredCastles">
             <td scope="row">{{ castle.id }}</td>
             <td>{{ castle.name }}</td>
+            <td>{{castle.year}}</td>
+            <td><img :src="castle.link " ></td>
             <td>
               <button @click="editCastle(castle.id)">Editar</button>
               <button @click="removeCastle(castle.id)">Remover</button>
@@ -83,6 +125,7 @@
           </tr>
         </tbody>
       </table>
+    </div>
     </div>
   </body>
 
