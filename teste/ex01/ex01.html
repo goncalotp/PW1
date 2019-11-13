@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <title>Esmadix</title>
+  </head>
+  <body>
+    <div id="app" class="container">
+      <h1>Esmadix</h1>
+      <button @click="addSeries">Adicionar serie</button>
+      <dialog id="addSeriesDialog">
+        <form>
+          <label id="txtName">Nome</label>
+          <input
+            for="txtName"
+            v-model="form.name"
+            type="text"
+            class="form-control"
+            placeholder="nome da serie"
+            required
+          />
+          <label id="txtSeasons">Temporada</label>
+          <input
+            for="txtSeasons"
+            min="1"
+            v-model="form.seasons"
+            type="number"
+            class="form-control"
+            placeholder="temporada"
+            required
+          />
+          <label id="txtEpisodes">Episodios</label>
+          <input
+            for="txtEpisodes"
+            min="1"
+            max="20"
+            v-model="form.episodes"
+            type="number"
+            class="form-control"
+            placeholder="episodios"
+            required
+          />
+          <label id="urlImage">Imagem</label>
+          <input
+            for="urlImage"
+           
+            v-model="form.url"
+            type="url"
+            class="form-control"
+            placeholder="url"
+            required
+          />
+          <br />
+          <button @click="addSeriesModal" type="submit">Adicionar serie</button>
+        </form>
+      </dialog>
+
+      <dialog id="editSeriesDialog">
+        <form @submit.prevent="updateSeries" method="dialog">
+         
+              <input
+                v-model="form.editName"
+                type="text"
+                class="form-control"
+                placeholder="nome"
+              />
+            
+            <input v-model="form.editId" type="hidden" />
+          
+          <br />
+          <button type="submit">Gravar</button>
+          <button>Fechar</button>
+        </form>
+      </dialog>
+
+      <br />
+      <br />
+      <span v-if="this.series.length === 0">Não existe series</span>
+      <div v-else>
+        <button @click="orderByName">Ordenar por nomes</button>
+        <br>
+        <label>Procura pelo titulo da serie:</label>
+         <input  v-model.lazy="form.filterName"></input> 
+        <br>
+         <label>Procura pela temporada da serie:</label>
+         <input  v-model.lazy="form.filterSeason"></input> 
+        <table>
+          <thead>
+            <tr>
+              <th>Titulo</th>
+              <th>Nº temporadas</th>
+              <th>Nº episodios</th>
+              <th>Capa</th>
+              <th>Opcões</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="serie in filteredSeries">
+              <td>{{serie.name}}</td>
+              <td>{{serie.seasons }}</td>
+              <td>{{serie.episodes}}</td>
+              <td ><img :src="serie.url " > </td>
+              <td>
+                <button @click="editSeries(series.id)">Editar</button>
+                <button @click="removeSeries(serie.id)">Remover</button>
+                 <!-- <img-card></img-card> -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+  <script src="/ex01.js"></script>
+</html>
